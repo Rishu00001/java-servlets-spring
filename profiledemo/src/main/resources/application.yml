@@ -1,0 +1,13 @@
+#spring.application.name=profiledemo
+#server.port = 8085
+#profile.message = Hello, This is Ritik Raj
+
+spring:
+  application:
+    name: profileDemo
+
+server:
+  port : 9095
+
+profile:
+  message : Hello Bro
