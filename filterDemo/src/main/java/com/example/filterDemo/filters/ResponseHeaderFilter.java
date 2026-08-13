@@ -1,4 +1,4 @@
-package com.example.filterDemo.filter;
+package com.example.filterDemo.filters;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,28 +9,17 @@ import java.io.IOException;
 import java.util.UUID;
 
 //@Component
-public class AuthFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-    }
-
+public class ResponseHeaderFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request,
                          ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
+
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        String token = httpServletRequest.getHeader("token");
-        if(token == null || !token.equals("12345")){
-            httpServletResponse.setStatus(401);
-            return;
-        }
-        chain.doFilter(request,response);
-    }
+        String requestId = UUID.randomUUID().toString();
+        httpServletResponse.setHeader("x-request-id",requestId);
 
-    @Override
-    public void destroy() {
-        Filter.super.destroy();
+        chain.doFilter(request,response);
     }
 }

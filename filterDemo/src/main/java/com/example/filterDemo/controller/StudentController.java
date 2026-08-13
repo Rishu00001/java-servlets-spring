@@ -1,6 +1,7 @@
 package com.example.filterDemo.controller;
 
 import com.example.filterDemo.dto.Student;
+import com.example.filterDemo.dto.StudentResponseDto;
 import com.example.filterDemo.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,8 @@ public class StudentController {
         this.studentService = studentService;
     }
     @PostMapping
-    public ResponseEntity<String> createStudent(@RequestBody Student student) throws InterruptedException {
-        studentService.createStudent(student);
-        return ResponseEntity.ok("Created");
+    public ResponseEntity<StudentResponseDto> createStudent(@RequestBody Student student) throws InterruptedException {
+        StudentResponseDto studentResponse = studentService.createStudent(student);
+        return ResponseEntity.ok(studentResponse);
     }
 }
