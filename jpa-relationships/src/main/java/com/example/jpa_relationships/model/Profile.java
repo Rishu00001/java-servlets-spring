@@ -14,10 +14,5 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
     private String bio;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @OneToOne(mappedBy = "user")
-    private Profile profile;
 }

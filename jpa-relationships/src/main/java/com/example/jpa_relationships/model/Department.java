@@ -22,7 +22,10 @@ public class Department {
     @Column(nullable = false, unique = true)
     private DepartmentType name;
 
-    @OneToMany(mappedBy = "department")
-    @JsonManagedReference
-    private List<Student> students = new ArrayList<>();
+
+            //cascade = CascadeType.REMOVE,
+            //fetch =FetchType.LAZY
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "department")
+//    private List<Student> students = new ArrayList<>();
 }

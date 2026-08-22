@@ -24,8 +24,15 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<Student> createStudent(
             @RequestBody Student student,
-            @RequestParam DepartmentType dept){
-        Student response = studentService.createStudent(student,dept);
+            @RequestParam Long deptId){
+        Student response = studentService.createStudent(student,deptId);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable Long id){
+        Student studentResponse = studentService.getStudentById(id);
+        return ResponseEntity.ok(studentResponse);
+    }
+
 }

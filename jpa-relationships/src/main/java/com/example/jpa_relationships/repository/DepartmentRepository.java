@@ -16,30 +16,43 @@ public class DepartmentRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+
+
+
     public Department save(Department department) {
         entityManager.persist(department);
         return department;
     }
 
+    public void removeDepartment(Department department){
+        entityManager.remove(department);
+    }
+
+
+
+
+
+
+
     public Department getDepartmentById(Long deptId) {
         return entityManager.find(Department.class, deptId);
     }
 
-    public Optional<Department> findByName(DepartmentType name) {
-
-        try {
-            Department department = entityManager
-                    .createQuery(
-                            "SELECT d FROM Department d WHERE d.name = :name",
-                            Department.class
-                    )
-                    .setParameter("name", name)
-                    .getSingleResult();
-
-            return Optional.of(department);
-
-        } catch (NoResultException e) {
-            return Optional.empty();
-        }
-    }
+//    public Optional<Department> findByName(DepartmentType name) {
+//
+//        try {
+//            Department department = entityManager
+//                    .createQuery(
+//                            "SELECT d FROM Department d WHERE d.name = :name",
+//                            Department.class
+//                    )
+//                    .setParameter("name", name)
+//                    .getSingleResult();
+//
+//            return Optional.of(department);
+//
+//        } catch (NoResultException e) {
+//            return Optional.empty();
+//        }
+//    }
 }

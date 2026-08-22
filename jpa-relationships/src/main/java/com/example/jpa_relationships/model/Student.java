@@ -17,12 +17,14 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "dept_id")
-
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    @JsonBackReference
+    //@OnDelete(action = OnDeleteAction.SET_NULL)
+    //@JsonBackReference
     private Department department;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 }
